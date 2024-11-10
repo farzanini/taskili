@@ -1,24 +1,19 @@
 import { useEffect, useState } from "react";
+import { Router, Routes, Route } from "react-router-dom";
 import "./App.css";
+import Main from "./main";
+import Login from "./Pages/Login/login";
+import Signup from "./Pages/Signup/signup";
 
 function App() {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data));
-  }, []);
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <div className="flex justify-center gap-x-4">
-          <div>{!data ? "Loading ..." : data.message}</div>
-          <div>Hello from tailwind !</div>
-        </div>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </Router>
   );
 }
 
